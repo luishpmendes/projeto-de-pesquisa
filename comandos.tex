@@ -29,6 +29,8 @@
 \newcommand{\faculdade}[1]{\def\nomeFaculdade{#1}}
 \newcommand{\periodoVigencia}[1]{\def\periodVig{#1}}
 \newcommand{\periodoRelatorio}[1]{\def\periodRelat{#1}}
+\newcommand{\orientador}[1]{\def\nomeOrientador{#1}}
+\newcommand{\coorientador}[1]{\def\nomeCoorientador{#1}}
 
 \author{}
 \date{}
@@ -46,50 +48,59 @@
 \newcommand{\Equation}[1] {Equa\c{c}\~ao~\ref{#1}}
 \newcommand{\addFigure}[3] { %Parametros scale, fig_name, caption 
     \begin{figure}[!hbt]
-      \centering
-      \includegraphics[scale=#1]{figures/}
-      \caption{#3}\label{fig:#2}
+        \centering
+        \includegraphics[scale=#1]{figures/}
+        \caption{#3}\label{fig:#2}
     \end{figure}
 }
 
-\newcommand{\geraTitulo}{
-\clearpage
-\begin{titlepage}
-  \begin{center}
-      \vspace*{-3cm}
-       { \setstretch{.5} 
-         \textsc{\nomeUniversidade} \\
-         \HRule{.2pt}\\
-         \textsc{\nomeFaculdade}
-       }
-
-       \vspace{5.5cm}
-
-       \Large \textbf{\textsc{\meuTitulo}}
- 	  \HRule{1.5pt} \\ [0.5cm]
-       \linespread{1}
-       \large Relatório Científico 
-       \ifdefined\tipoRelat
-            \tipoRelat
-       \fi
-       do projeto 
-       \ifdefined\modProjeto
-           na modalidade \modProjeto,
-       \fi
-       fomentado pela \agFom. \\ 
-   	   \HRule{1.5pt} \\ [0.5cm]
-
-       \ifdefined\numFAP
-          Projeto \siglaAgFom~\texttt{\#\numFAP}
-          \\ [0.5cm]
-       \fi
-        Pesquisador Responsável: \nomeAutor
-       
-        \vfill
-       
-        {\normalsize  \nomeCidade, \today}
- \end{center}
- \end{titlepage}
+\newcommand{\geraTitulo} {
+    \clearpage
+    \begin{titlepage}
+        \begin{center}
+            \vspace*{-3cm} {
+                \setstretch{.5} 
+                \textsc{\nomeUniversidade} \\
+                \HRule{.2pt}\\
+                \textsc{\nomeFaculdade}
+            }
+    
+            \vspace{5.5cm}
+    
+            \large Projeto de Pesquisa
+     	    \HRule{1.5pt} \\ [0.5cm]
+            \linespread{1}
+            \Large \textbf{\textsc{\meuTitulo}}
+            %%%
+            %\large Relatório Científico 
+            %\ifdefined\tipoRelat
+            %    \tipoRelat
+            %\fi
+            %do projeto 
+            %\ifdefined\modProjeto
+            %    na modalidade \modProjeto,
+            %\fi
+            %fomentado pela \agFom. \\ 
+            %%%%            
+       	    \HRule{1.5pt} \\ [0.5cm]
+    
+            \ifdefined\numFAP
+                Projeto \siglaAgFom~\texttt{\#\numFAP}
+                \\ [0.5cm]
+            \fi
+            
+            \begin{itemize}
+                \item[] Candidato: \nomeAutor
+            
+                \item[] Orientador: Prof. Dr. \nomeOrientador
+                
+                \item[] Co-orientador: Prof. Dr. \nomeCoorientador
+            \end{itemize}
+            \vfill
+            
+            {\normalsize  \nomeCidade, \today}
+        \end{center}
+    \end{titlepage}
 }
 
 \usepackage{titlesec}
@@ -110,67 +121,67 @@
 %------
 % Resumo e Abstract
 %------
-\newcommand{\Resumo}[1]{
-   \begin{otherlanguage}{portuguese}
-       \addcontentsline{toc}{chapter}{Resumo}
-       \begin{abstract} \thispagestyle{plain} \setcounter{page}{2}
-          #1
+\newcommand{\Resumo}[1] {
+    \begin{otherlanguage}{portuguese}
+        \addcontentsline{toc}{chapter}{Resumo}
+        \begin{abstract} \thispagestyle{plain} \setcounter{page}{2}
+            #1
         \end{abstract}
-   \end{otherlanguage} 
+    \end{otherlanguage} 
 } %end \Resumo
 
-\newcommand{\Abstract}[1]{
-   \begin{otherlanguage}{english}
-      \addcontentsline{toc}{chapter}{Abstract}
-      \begin{abstract} \thispagestyle{plain} \setcounter{page}{3}
-       #1
-      \end{abstract}    
+\newcommand{\Abstract}[1] {
+    \begin{otherlanguage}{english}
+        \addcontentsline{toc}{chapter}{Abstract}
+        \begin{abstract} \thispagestyle{plain} \setcounter{page}{3}
+            #1
+        \end{abstract}    
     \end{otherlanguage} 
 } %end \abstract
 
 %------
 % Folha de rosto
 %------
-\newcommand{\folhaDeRosto}{
-   \chapter*{Informações Gerais do Projeto}
-   \addcontentsline{toc}{chapter}{Informações Gerais do Projeto}
-   \begin{itemize}
-      \item Título do projeto: 
+\newcommand{\folhaDeRosto} {
+    \chapter*{Informações Gerais do Projeto}
+    \addcontentsline{toc}{chapter}{Informações Gerais do Projeto}
+    \begin{itemize}
+        \item Título do projeto: 
             \begin{itemize}\item[] \textbf{\meuTitulo} \end{itemize}
-      \item Nome do pesquisador responsável: 
+        \item Nome do pesquisador responsável: 
             \begin{itemize}\item[]\textbf{\nomeAutor}\end{itemize}
-      \item Instituição sede do projeto: 
+        \item Instituição sede do projeto: 
             \begin{itemize}
-               \item[]\textbf{\nomeFaculdade \ da \nomeUniversidade} 
+                \item[]\textbf{\nomeFaculdade \ da \nomeUniversidade} 
             \end{itemize}
-      \item Equipe de pesquisa:
+        \item Equipe de pesquisa:
             \begin{itemize}
-               \ifdefined\nomeMembroA
-                 \item[]\textbf{\nomeMembroA}
-               \else 
-                 \item[]\textbf{\nomeAutor}
-               \fi
-               \ifx\nomeMembroB\undefined\else \item[]\textbf{\nomeMembroB}\fi
-               \ifx\nomeMembroC\undefined\else \item[]\textbf{\nomeMembroC}\fi
-               \ifx\nomeMembroD\undefined\else \item[]\textbf{\nomeMembroD}\fi
-               \ifx\nomeMembroE\undefined\else \item[]\textbf{\nomeMembroE}\fi
-               \ifx\nomeMembroF\undefined\else \item[]\textbf{\nomeMembroF}\fi
-             \end{itemize}
-       
-          \ifdefined \numFAP
-             \item Número do projeto de pesquisa:
-             \begin{itemize}
-                 \item[]\textbf{\numFAP} 
-             \end{itemize}
-          \fi  
-       \item Período de vigência:
-            \begin{itemize}
-               \item[]\textbf{\periodRelat} 
+                \ifdefined\nomeMembroA
+                    \item[]\textbf{\nomeMembroA}
+                \else 
+                    \item[]\textbf{\nomeAutor}
+                \fi
+                \ifx\nomeMembroB\undefined\else \item[]\textbf{\nomeMembroB}\fi
+                \ifx\nomeMembroC\undefined\else \item[]\textbf{\nomeMembroC}\fi
+                \ifx\nomeMembroD\undefined\else \item[]\textbf{\nomeMembroD}\fi
+                \ifx\nomeMembroE\undefined\else \item[]\textbf{\nomeMembroE}\fi
+                \ifx\nomeMembroF\undefined\else \item[]\textbf{\nomeMembroF}\fi
             \end{itemize}
-       \item Período coberto por este relatório científico:
+
+        \ifdefined \numFAP
+            \item Número do projeto de pesquisa:
+                \begin{itemize}
+                    \item[]\textbf{\numFAP} 
+                \end{itemize}
+        \fi  
+        \item Período de vigência:
             \begin{itemize}
-               \item[]\textbf{\periodVig} 
+                \item[]\textbf{\periodRelat} 
             \end{itemize}
-   \end{itemize}
-   \clearpage
+        \item Período coberto por este relatório científico:
+            \begin{itemize}
+                \item[]\textbf{\periodVig} 
+            \end{itemize}
+    \end{itemize}
+    \clearpage
 }
